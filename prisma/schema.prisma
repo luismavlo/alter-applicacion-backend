@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model application {
+  id              Int    @id @default(autoincrement())
+  email           String @db.VarChar
+  first_name            String @db.VarChar
+  last_name         String @db.VarChar
+  country_id         String @db.VarChar
+  street         String @db.VarChar
+  street_number      String @db.VarChar
+  postal_code      String @db.VarChar
+  city            String @db.VarChar
+  state        String @db.VarChar
+  studies_applicant      String @db.VarChar
+  motivation      String @db.Text
+  programming_experience      String @db.Text
+  channel String @db.VarChar
+  course_requirements Boolean @db.Boolean @default(true)
+  status          Status? @default(PENDING)
+}
+
+enum Status {
+  PENDING
+  RESOLVE
+  DELETED
+}
